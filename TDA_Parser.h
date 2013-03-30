@@ -14,11 +14,6 @@ typedef struct {
     char    Jugada09[2];
     char    Jugada10[3];
     int     NumLinea = 0;
-} LineaArchivo;
-
-typedef struct {
-    int NLA;
-    LineaArchivo Archivo[NLA];
 } TDA_Parser;
 
 // Primitivas.

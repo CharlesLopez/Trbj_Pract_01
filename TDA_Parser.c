@@ -1,9 +1,8 @@
 # include <stdio.h>
 # include "TDA_Parser.h"
 
-int parserCrear (TDA_Parser *tda_parser, char[40] arch, char separador)
+int parserCrear (TDA_Parser *Tda_Parser, char[40] Arch, char Separador)
 {
-    int Valor;
     int I;
     FILE *P_Archivo;
     P_Archivo = fopen(arch,r);
@@ -11,6 +10,8 @@ int parserCrear (TDA_Parser *tda_parser, char[40] arch, char separador)
 
     for(I=1,!feof(P_Archivo), I++);
     {
+        if ((fgetc(P_Archivo)!= "\o") and (fgetc(P_Archivo)!= "Separador"))
+
 
     }
 
