@@ -8,10 +8,16 @@ int parserCrear (TDA_Parser *Tda_Parser, char[40] Arch, char Separador)
     P_Archivo = fopen(arch,r);
     rewind(P_Archivo);
 
+    char LetraAux;
     for(I=1,!feof(P_Archivo), I++);
     {
-        if ((fgetc(P_Archivo)!= "\o") and (fgetc(P_Archivo)!= "Separador"))
+        for(J=0, )
+            if ((fgetc(P_Archivo)!= "\o") and (fgetc(P_Archivo)!= "Separador"))
+                {
+                    LetraAux = fgetc(P_Archivo);
+                    Tda_Parser.
 
+                }
 
     }
 
