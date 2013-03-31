@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "TDA_Parser.h"
+int ContLinea;
 
 int parserCrear (TDA_Parser *Tda_Parser, char[40] Arch, char Separador)
 {
@@ -79,8 +80,13 @@ int parserCrear (TDA_Parser *Tda_Parser, char[40] Arch, char Separador)
 
 int obtenerSiguienteLinea (TDA_Parser *Tda_Parser,)
 {
-    int ContLinea;
-
+    if (ContLinea< MAX_JUG)
+        {
+            ContLinea+= 1;
+            return ContLinea;
+        }
+    else
+        return 0;
 }
 
 int obtenerCampo (TDA_Parser Tda_Parser, int N, char *Valor)
