@@ -1,5 +1,5 @@
-# Include <stdio.h>
-# Include "TDA_Score.h"
+#include <stdio.h>
+#Include "TDA_Score.h"
 
 // Valores de retorno: Falla=0 ; Exito=1
 
@@ -20,7 +20,17 @@ int crear(TDA_Score* score) {
 }
 
 
-int AgregarTiro(TDA_Score* score, char detalle[3], int posicion) {
+int AgregarTiro(TDA_Score* score, char detalle[4], int posicion) {
+    if (posicion=10) {
+            score.jugada.10[0]=detalle[0];
+            score.jugada.10[1]=detalle[1];
+            score.jugada.10[2]=detalle[2];
+            return 1;
+            } else {
+                score.jugada.posicion[0]=detalle[0];
+                score.jugada.posicion[1]=detalle[1];
+                return 1;
+            }
 
 }
 
@@ -38,6 +48,6 @@ char obtenerParticipante[20](TDA_Score score) {
 }
 
 void destruir(TDA_Score* score){
-    free(Score);
+    free(score);
     return 1;
 }
