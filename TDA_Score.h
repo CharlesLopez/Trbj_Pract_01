@@ -5,16 +5,16 @@
 typedef struct {
     char Nombre[20];
     struct {
-          char 1[2];
-          char 2[2];
-          char 3[2];
-          char 4[2];
-          char 5[2];
-          char 6[2];
-          char 7[2];
-          char 8[2];
-          char 9[2];
-          char 10[3];
+          char 1[3];
+          char 2[3];
+          char 3[3];
+          char 4[3];
+          char 5[3];
+          char 6[3];
+          char 7[3];
+          char 8[3];
+          char 9[3];
+          char 10[4];
      } Jugada;
 } TDA_Score;
 
