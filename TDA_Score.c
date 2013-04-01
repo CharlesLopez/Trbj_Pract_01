@@ -1,5 +1,5 @@
 #include <stdio.h>
-#Include "TDA_Score.h"
+#include "TDA_Score.h"
 
 // Valores de retorno: Falla=0 ; Exito=1
 
@@ -15,7 +15,6 @@ int crear(TDA_Score* score) {
     score.jugada.10[1]="";
     score.jugada.10[2]="";
     score.jugada.10[3]="";
-
     return 1;
 }
 
@@ -35,11 +34,13 @@ int AgregarTiro(TDA_Score* score, char detalle[4], int posicion) {
 }
 
 int calcularResultado(TDA_Score score){
+    For(int i=1;i<11;i++){
 
+        }
 }
 
 int establecerParticipante(TDA_Score* score, char nombreUsuario[20]) {
-    TDA_Score.nombre=nombreUsuario;
+    TDA_Score.nombre=nombreUsuario;                  /*Inserta dentro del tdascore el nombre de usuario que recibio, supuestamente desde el parser*/
     return 1;
 }
 
@@ -48,6 +49,6 @@ char obtenerParticipante[20](TDA_Score score) {
 }
 
 void destruir(TDA_Score* score){
-    free(score);
+    free(score);                              /* Libera la memoria usada por el score*/
     return 1;
 }
