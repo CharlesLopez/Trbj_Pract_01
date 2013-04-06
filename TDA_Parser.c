@@ -1,104 +1,161 @@
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 #include "TDA_Parser.h"
-
-int ContLinea= 1 ; // necesario para obtenerSiguienteLinea.
 
 // Primitivas
 
-int parserCrear (TDA_Parser *Tda_Parser, char[40] Archivo, char Separador)
+int parserCrear (TDA_Parser *Tda_Parser, char *Archivo, char Separador)
 {
     char CadeAux;
     int I;
     FILE *P_Archivo;
-
-    P_Archivo= fopen(Archivo,r);
-
-    if (!P_Archivo)
+    P_Archivo= fopen(Archivo,"r");
+    if (P_Archivo)
+    {
+        rewind(P_Archivo);
+        if (!feof(P_Archivo))
+            do
+            {
+                do
+                {
+                    CadeAux= fgetc(P_Archivo);
+                    strcat(Tda_Parser.Nombre, CadeAux);
+                }
+                while(CadeAux!= Separador);
+                do
+                {
+                    CadeAux = fgetc(P_Archivo);
+                    strcat(Tda_Parser.Jugada01, *CadeAux);
+                }
+                while(CadeAux!= Separador);
+                do
+                {
+                    CadeAux = fgetc(P_Archivo);
+                    strcat(*Tda_Parser.Jugada02, CadeAux);
+                }
+                while(CadeAux!= Separador);
+                do
+                {
+                    CadeAux = fgetc(P_Archivo);
+                    strcat(*Tda_Parser.Jugada03, *CadeAux);
+                }
+                while(CadeAux!= Separador);
+                do
+                {
+                    CadeAux = fgetc(P_Archivo);
+                    strcat(*Tda_Parser.Jugada04, *CadeAux);
+                }
+                while(CadeAux!= Separador);
+                do
+                {
+                    CadeAux = fgetc(P_Archivo);
+                    strcat(*Tda_Parser.Jugada05, *CadeAux);
+                }
+                while(CadeAux!= Separador);
+                do
+                {
+                    CadeAux = fgetc(P_Archivo);
+                    strcat(*Tda_Parser.Jugada06, *CadeAux);
+                }
+                while(CadeAux!= Separador);
+                do
+                {
+                    CadeAux = fgetc(P_Archivo);
+                    strcat(*Tda_Parser.Jugada07, *CadeAux);
+                }
+                while(CadeAux!= Separador);
+                do
+                {
+                    CadeAux = fgetc(P_Archivo);
+                    strcat(*Tda_Parser.Jugada08, *CadeAux);
+                }
+                while(CadeAux!= Separador);
+                do
+                {
+                    CadeAux = fgetc(P_Archivo);
+                    strcat(*Tda_Parser.Jugada09, *CadeAux);
+                }
+                while(CadeAux!= Separador);
+                do
+                {
+                    CadeAux = fgetc(P_Archivo);
+                    strcat(*Tda_Parser.Jugada10, *CadeAux);
+                }
+                while(CadeAux!= "\0");
+                *Tda_Parser.NumLinea = 1;
+                *Tda_Parser.Archivo = P_Archivo;
+                *Tda_Parser.Separador = *Separador;
+            }
+            while (CadeAux!= "\0");
+        else
+        {
+            printf("El Archivo: -> %s"," ESTA VACIO!!!!!!", Archivo);
+            return 0;
+        }
+    }
+    else
     {
         printf("El Archivo: -> %s"," NO EXISTE y NO FUE ABIERTO", Archivo);
         return 0;
     }
-    else
-        rewind(P_Archivo);
 
-    if (feof(P_Archivo))
-    {
-        printf("El Archivo: -> %s"," ESTA VACIO!!!!!!", Archivo);
-        return 0;
-    }
-
-    else // si NO entra acá será por algun error ...
-    {
-      for(I= 1, feof(P_Archivo), I++) //Proceso de Inicializacion del Tda_Parser.
-      {
-          do
-            CadeAux = fgetc(P_Archivo);
-          while(CadeAux!= Separador);
-          Tda_Parser[I-1].Nombre= Tda_Parser[I-1].Nombre + CadeAux;
-          do
-            CadeAux = fgetc(P_Archivo);
-          while(CadeAux!= Separador);
-          Tda_Parser[I-1].Jugada01= Tda_Parser[I-1].Jugada01 + CadeAux;
-          do
-            CadeAux = fgetc(P_Archivo);
-          while(CadeAux!= Separador);
-          Tda_Parser[I-1].Jugada02= Tda_Parser[I-1].Jugada02 + CadeAux;
-          do
-            CadeAux = fgetc(P_Archivo);
-          while(CadeAux!= Separador);
-          Tda_Parser[I-1].Jugada03= Tda_Parser[I-1].Jugada03 + CadeAux;
-          do
-            CadeAux = fgetc(P_Archivo);
-          while(CadeAux!= Separador);
-          Tda_Parser[I-1].Jugada04= Tda_Parser[I-1].Jugada04 + CadeAux;
-          do
-            CadeAux = fgetc(P_Archivo);
-          while(CadeAux!= Separador);
-          Tda_Parser[I-1].Jugada05= Tda_Parser[I-1].Jugada05 + CadeAux;
-          do
-            CadeAux = fgetc(P_Archivo);
-          while(CadeAux!= Separador);
-          Tda_Parser[I-1].Jugada06= Tda_Parser[I-1].Jugada06 + CadeAux;
-          do
-            CadeAux = fgetc(P_Archivo);
-          while(CadeAux!= Separador);
-          Tda_Parser[I-1].Jugada07= Tda_Parser[I-1].Jugada07 + CadeAux;
-          do
-            CadeAux = fgetc(P_Archivo);
-          while(CadeAux!= Separador);
-          Tda_Parser[I-1].Jugada08= Tda_Parser[I-1].Jugada08 + CadeAux;
-          do
-            CadeAux = fgetc(P_Archivo);
-          while(CadeAux!= Separador);
-          Tda_Parser[I-1].Jugada09= Tda_Parser[I-1].Jugada09 + CadeAux;
-          do
-            CadeAux = fgetc(P_Archivo);
-          while(CadeAux!= Separador);
-          Tda_Parser[I-1].Jugada10= Tda_Parser[I-1].Jugada10 + CadeAux;
-          Tda_Parser[I-1].NumLinea= I;
-      }
-      if (!fclose(P_Archivo))   // Si el Tda_Parser es inicializado Correctamente Se cierra Archivo
-        return 1;               // Entonces todo esta OK.
-      else
-      {
-          printf("Error al Cerrar el Archivo: %s",Archivo);
-          return 0;
-      }
-    }
-    return 0; // ... entonces retorna 0.
+    return 0;
 }
 
 int obtenerSiguienteLinea (TDA_Parser *Tda_Parser,)
 {
-    int Aux;
-    if (ContLinea < MAX_JUG)
+    do
     {
-        Aux= Tda_Parser[ContLinea--].NumLinea;
-        ContLinea++;
-        return Aux;
+        do
+            CadeAux= fgetc(Tda_Parser.Archivo);
+            strcat(Tda_Parser.Nombre, CadeAux);
+        while(CadeAux!= Separador);
+        do
+            CadeAux = fgetc(Tda_Parser.Archivo);
+            strcat(Tda_Parser.Jugada01, CadeAux);
+        while(CadeAux!= Separador);
+        do
+            CadeAux = fgetc(Tda_Parser.Archivo);
+            strcat(Tda_Parser.Jugada02, CadeAux);
+        while(CadeAux!= Separador);
+        do
+            CadeAux = fgetc(Tda_Parser.Archivo);
+            strcat(Tda_Parser.Jugada03, CadeAux);
+        while(CadeAux!= Separador);
+        do
+            CadeAux = fgetc(Tda_Parser.Archivo);
+            strcat(Tda_Parser.Jugada04, CadeAux);
+        while(CadeAux!= Separador);
+        do
+            CadeAux = fgetc(Tda_Parser.Archivo);
+            strcat(Tda_Parser.Jugada05, CadeAux);
+        while(CadeAux!= Separador);
+        do
+            CadeAux = fgetc(Tda_Parser.Archivo);
+            strcat(Tda_Parser.Jugada06, CadeAux);
+        while(CadeAux!= Separador);
+        do
+            CadeAux = fgetc(Tda_Parser.Archivo);
+            strcat(Tda_Parser.Jugada07, CadeAux);
+        while(CadeAux!= Separador);
+        do
+            CadeAux = fgetc(Tda_Parser.Archivo);
+            strcat(Tda_Parser.Jugada08, CadeAux);
+        while(CadeAux!= Separador);
+        do
+            CadeAux = fgetc(Tda_Parser.Archivo);
+            strcat(Tda_Parser.Jugada09, CadeAux);
+        while(CadeAux!= Separador);
+        do
+            CadeAux = fgetc(Tda_Parser.Archivo);
+            strcat(Tda_Parser.Jugada10, CadeAux);
+        while(CadeAux!= "\0");
+
+        Tda_Parser.NumLinea= Tda_Parser.NumLinea++;
     }
-    else
-        return 0; //si se termina el Parser o hay algun error en el procesamiento.
+    while ((CadeAux!= "\0") || foef(Tda_Parser.Archivo));
+    return 1;
 }
 
 int obtenerCampo (TDA_Parser Tda_Parser, int N, char *Valor)
@@ -122,6 +179,7 @@ int obtenerCampo (TDA_Parser Tda_Parser, int N, char *Valor)
 
 int destruir (TDA_Parser *Tda_Parser)
 {
+    fclose(P_Archivo);
     free(Tda_Parser);
     return 1;
 }
