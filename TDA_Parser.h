@@ -15,18 +15,18 @@ typedef struct {
     char Jugada09[3];
     char Jugada10[4];
     int NumLinea;
-    char *Archivo;
-    char Separador[3];
+    FILE *Archivo;
+    char Separador;
 } TDA_Parser;
 
 // Primitivas.
 
-int parserCrear (TDA_Parser *Tda_Parser, char *Arch, char Separador);
+int parserCrear(TDA_Parser *Tda_Parser, char *Archivo, char Separador);
 
-int obtenerSiguienteLinea (TDA_Parser *Tda_Parser);
+int obtenerSiguienteLinea(TDA_Parser *Tda_Parser);
 
-int obtenerCampo (TDA_Parser Tda_Parser, int N, char *Valor);
+int obtenerCampo(TDA_Parser Tda_Parser, int N, char *Valor);
 
-int destruir (TDA_Parser *Tda_Parser);
+int Destruirlo(TDA_Parser *Tda_Parser);
 
 # endif
