@@ -102,7 +102,7 @@ int s_establecerParticipante(TDA_Score *score,char nombreUsuario[20]) {
     } else return 0;
 }
 
-char* s_obtenerParticipante(TDA_Score *score) {
+char* s_obtenerParticipante(TDA_Score* score) {
     if (score->creado==1){
         return score->nombre;   // Devuelve el nombre del jugador, almacenado en el tda_Score
     }
