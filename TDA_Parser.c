@@ -7,8 +7,7 @@
 
 int parserCrear (TDA_Parser *Tda_Parser, char *Archivo, char Separador)
 {
-    char CadeAux[3];
-    int I = 0, Contador = 0, C;
+    int I, Contador;
     FILE *P_Archivo;
     P_Archivo = fopen(Archivo,"r");
     if (P_Archivo)
@@ -16,52 +15,58 @@ int parserCrear (TDA_Parser *Tda_Parser, char *Archivo, char Separador)
         rewind(P_Archivo);
         if (!EOF)
         {
+            Contador= 1;
             do
             {
-                Contador += 1;
-                do
-                {
-                    CadeAux[I] = fgetc(P_Archivo);
-                    I ++;
-                }
-                while((CadeAux[(I - 1)] != Separador) || (CadeAux[(I - 1)] != '\n'));
                 if (Contador == 1)
-                    strcat((*Tda_Parser).Nombre, CadeAux);
+                    For (I= 0, I< 20, I++)
+                        (*Tda_Parser).Nombre[I]= '\0';
                 if (Contador == 2)
-                    strcat((*Tda_Parser).Jugada01, CadeAux);
+                    For (I= 0, I< 2, I++)
+                        (*Tda_Parser).Jugada01[I]= '\0';
                 if (Contador == 3)
-                    strcat((*Tda_Parser).Jugada02, CadeAux);
+                    For (I= 0, I< 2, I++)
+                        (*Tda_Parser).Jugada02[I]= '\0';
                 if (Contador == 4)
-                    strcat((*Tda_Parser).Jugada03, CadeAux);
+                    For (I= 0, I< 2, I++)
+                        (*Tda_Parser).Jugada03[I]= '\0';
                 if (Contador == 5)
-                    strcat((*Tda_Parser).Jugada04, CadeAux);
+                    For (I= 0, I< 2, I++)
+                        (*Tda_Parser).Jugada04[I]= '\0';
                 if (Contador == 6)
-                    strcat((*Tda_Parser).Jugada05, CadeAux);
+                    For (I= 0, I< 2, I++)
+                        (*Tda_Parser).Jugada05[I]= '\0';
                 if (Contador == 7)
-                    strcat((*Tda_Parser).Jugada06, CadeAux);
+                    For (I= 0, I< 2, I++)
+                        (*Tda_Parser).Jugada06[I]= '\0';
                 if (Contador == 8)
-                    strcat((*Tda_Parser).Jugada07, CadeAux);
+                    For (I= 0, I< 2, I++)
+                        (*Tda_Parser).Jugada07[I]= '\0';
                 if (Contador == 9)
-                    strcat((*Tda_Parser).Jugada08, CadeAux);
+                    For (I= 0, I< 2, I++)
+                        (*Tda_Parser).Jugada08[I]= '\0';
                 if (Contador == 10)
-                    strcat((*Tda_Parser).Jugada09, CadeAux);
+                    For (I= 0, I< 2, I++)
+                        (*Tda_Parser).Jugada09[I]= '\0';
                 if (Contador == 11)
-                    strcat((*Tda_Parser).Jugada10, CadeAux);
+                    For (I= 0, I< 2, I++)
+                        (*Tda_Parser).Jugada10[I]= '\0';
+                ++Contador;                
             }
-            while (CadeAux[I-1] != '\n');
-            (*Tda_Parser).NumLinea = 1;
+            while (Contador < 12);
+            (*Tda_Parser).NumLinea = 0;
             (*Tda_Parser).Archivo = P_Archivo;
             (*Tda_Parser).Separador = Separador;
         }
         else
         {
-            printf("El Archivo: -> %s"," ESTA VACIO!!!!!!", Archivo);
+            printf("El Archivo: -> %s"," ESTA VACIO!!!!!!\n", Archivo);
             return 0;
         }
     }
     else
     {
-        printf("El Archivo: -> %s"," NO EXISTE y NO FUE ABIERTO", Archivo);
+        printf("El Archivo: -> %s"," NO EXISTE y NO FUE ABIERTO\n", Archivo);
         return 0;
     }
     return 0;
@@ -70,9 +75,9 @@ int parserCrear (TDA_Parser *Tda_Parser, char *Archivo, char Separador)
 
 int obtenerSiguienteLinea (TDA_Parser *Tda_Parser)
 {
-    char CadeAux[3];
-    int Contador = 0, I = 0, C;
-    if ((*Tda_Parser).NumLinea > 0)
+    char CadeAux[20];
+    int Contador, I;
+    if ((*Tda_Parser).NumLinea >= 0)
     {
         do
         {
@@ -82,7 +87,7 @@ int obtenerSiguienteLinea (TDA_Parser *Tda_Parser)
                 CadeAux[I] = fgetc((*Tda_Parser).Archivo);
                 I ++;
             }
-            while((CadeAux[I-1] != (*Tda_Parser).Separador) || (CadeAux[I-1] != '\n'));
+            while((CadeAux[I-1] != (*Tda_Parser).Separador) && (CadeAux[I-1] != '\n'));
             if (Contador == 1)
                 strcat((*Tda_Parser).Nombre, CadeAux);
             if (Contador == 2)
