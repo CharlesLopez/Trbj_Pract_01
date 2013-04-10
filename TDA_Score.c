@@ -5,6 +5,7 @@
 
 // Valores de retorno: Falla=0 ; Exito>0
 
+
 int s_crear(TDA_Score *score) {
     strcpy(score->nombre,"");
     int i;
@@ -40,16 +41,20 @@ int s_AgregarTiro(TDA_Score *score,char detalle[3],int posicion) {
     } else return 0;
 }
 
-long s_calcularResultado(TDA_Score score){
+int s_calcularResultado(TDA_Score score){
     if(score.creado==1){
         int i,j,h,k,puntos[10];
-        long total;
+        int total;
 
         for (k=0;k<10;k++){
             puntos[k]=0;
         }
 
         for(i=1;i<10;i++){
+            if ((score.jugada[i][0]+score.jugada[i][1])>9)return (-i);
+            if ((score.jugada[i][0]==-1)&&(score.jugada[i][1]==-1))return (-i);      //Si encuentra un error, devuelve la linea donde encontro el error
+            if ((score.jugada[i][0]==-2)&&(score.jugada[i][1]==-2))return (-i);
+
             if(score.jugada[i][0]==-1){
                     puntos[i]=10;
                     if (i>1){
@@ -102,10 +107,11 @@ int s_establecerParticipante(TDA_Score *score,char nombreUsuario[20]) {
     } else return 0;
 }
 
-char* s_obtenerParticipante(TDA_Score* score) {
-    if (score->creado==1){
-        return score->nombre;   // Devuelve el nombre del jugador, almacenado en el tda_Score
-    }
+int s_obtenerParticipante(TDA_Score score,char *nombre[20]) {
+    if (score.creado==1){
+        strcpy(score.nombre,*nombre);
+        return 1;   // Devuelve el nombre del jugador, almacenado en el tda_Score
+    }else return 0;
 }
 
 int s_destruir(TDA_Score *score){
